@@ -110,6 +110,6 @@ public class ServiceCliente {
         }
 
         return false;
-    }
+    }//Alteração Git Teste
 
 }

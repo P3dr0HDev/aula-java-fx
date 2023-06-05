@@ -248,6 +248,6 @@ public class CadastroController {
 
         tabelaEnderecos.getItems().addAll(endList);
     }
-//commit class3
+
 }
 

@@ -94,7 +94,7 @@ public class ServiceCliente {
 
         return false;
     }
-
+//Alteração commit Git pt1
     public static boolean buscarClienteByDocumento(String documento){
         try{
             Connection conn = conexao.getConexao();
@@ -110,6 +110,6 @@ public class ServiceCliente {
         }
 
         return false;
-    }//Alteração Git Teste
+    }//Alteração Git Teste pt2
 
 }

@@ -21,7 +21,6 @@ public class ServiceEnderecos {
 
                 while (rs.next()) {
                     Enderecos end = new Enderecos(rs.getInt("id"), rs.getString("cep"), rs.getString("rua"), rs.getString("numero"), rs.getString("bairro"), rs.getString("cidade"), rs.getString("estado"));
-
                     out.add(end);
                 }
 

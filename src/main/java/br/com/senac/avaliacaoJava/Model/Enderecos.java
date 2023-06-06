@@ -20,7 +20,8 @@ public class Enderecos {
 
     }
 
-    public Enderecos(String cep, String Rua, String numeroCasa, String bairro, String cidade, String estado) {
+    public Enderecos(Integer idEndereco, String cep, String Rua, String numeroCasa, String bairro, String cidade, String estado) {
+        this.idEndereco = idEndereco;
         this.cepCliente = cep;
         this.ruaCliente = Rua;
         this.numCasaCliente = numeroCasa;

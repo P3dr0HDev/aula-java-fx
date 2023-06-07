@@ -150,10 +150,10 @@ public class CadastroController {
 
     public void salvarCli(){
 
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        /*Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Alerta");
         alert.setHeaderText("Campos Nome: " + nomeCliente.getText() + " Documento: " + docCliente.getText() + " são obrigatórios!");
-        alert.show();
+        alert.show(); */
 
         Cliente cli = new Cliente();
         cli.setNomeCliente(nomeCliente.getText());
@@ -177,9 +177,9 @@ public class CadastroController {
             if(!cli.getDocCliente().matches("[0-9]*")) {
 
                 Alert alerta = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Erro");
-                alert.setHeaderText("Documento invalido");
-                alert.show();
+                alerta.setTitle("Erro");
+                alerta.setHeaderText("Documento invalido");
+                alerta.show();
 
             }else if(ServiceCliente.buscarClienteByDocumento(cli.getDocCliente())) {
                 Alert alerta = new Alert(Alert.AlertType.ERROR);

@@ -10,7 +10,7 @@ public class ConexaoDataBase {
 
     public synchronized Connection getConexao() throws SQLException {
         if(conn == null){
-            conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/clientes", "postgres", "postgres");
+            conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/AulaJavaDB", "postgres", "postgres");
             //conn = DriverManager.getConnection("jdbc:mysql://localhost/ecommerce", "root", "");
         }
 

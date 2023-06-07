@@ -148,8 +148,7 @@ public class CadastroController {
 
     }
 
-    @FXML
-    public void executarOk(){
+    public void salvarCli(){
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Alerta");
@@ -163,32 +162,18 @@ public class CadastroController {
         cli.setEmailCliente(emailCliente.getText());
         cli.setTelCliente(telCliente.getText());
 
-        Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Alerta");
-        alert.setHeaderText("Campos CEP: " + cepCliente.getText() + " Rua: " + ruaCliente.getText() + " Número: " + numCasaCliente.getText() + " Bairro: " +  bairroCliente.getText() + " Cidade: " +  cidadeCliente.getText() + " Estado: " +  estadoCliente.getText() + " são obrigatórios!");
-        alert.show();
-
-        Enderecos end = new Enderecos();
-        end.setCepCliente(cepCliente.getText());
-        end.setRuaCliente(ruaCliente.getText());
-        end.setNumCasaCliente(numCasaCliente.getText());
-        end.setBairroCliente(bairroCliente.getText());
-        end.setCidadeCliente(cidadeCliente.getText());
-        end.setEstadoCliente(estadoCliente.getText());
-
-
         // atualiza item - resetar index
         if(index > -1){
         //    tabelaClientes.getItems().set(index, cli);
-        //    tabelaEnderecos.getItems().set(index, end);
+
         ServiceCliente.atualizarCliente(index, cli);
-        ServiceEnderecos.atualizarEnderecos(index, end);
+
 
             index = -1;
         }else {
             // inclui novo registro
         //    tabelaClientes.getItems().add(cli);
-        //    tabelaEnderecos.getItems().add(end);
+
             if(!cli.getDocCliente().matches("[0-9]*")) {
 
                 Alert alerta = new Alert(Alert.AlertType.ERROR);
@@ -204,7 +189,7 @@ public class CadastroController {
 
             }else {
                 ServiceCliente.inserirCliente(cli);
-                ServiceEnderecos.inserirEnderecos(end);
+
             }
         }
 
@@ -214,6 +199,83 @@ public class CadastroController {
         this.limparCampos();
 
     }
+
+    public void salvarEnd(){
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Alerta");
+        alert.setHeaderText("Campos CEP: " + cepEndCliente.getText() + " Número: " + numEndCliente.getText() + " Bairro: " + bairroEndCliente + " Cidade: " + cidadeEndCliente.getText() + " e Estado: " + estadoEndCliente.getText() + " são obrigatórios!");
+        alert.show();
+
+        Enderecos end = new Enderecos();
+        end.setCepCliente(cepEndCliente.getText());
+        end.setRuaCliente(ruaEndCliente.getText());
+        end.setNumCasaCliente(numEndCliente.getText());
+        end.setBairroCliente(bairroEndCliente.getText());
+        end.setCidadeCliente(cidadeEndCliente.getText());
+        end.setEstadoCliente(estadoEndCliente.getText());
+
+        // atualiza item - resetar index
+        if(index > -1){
+            //    tabelaClientes.getItems().set(index, cli);
+
+            ServiceEnderecos.atualizarEnderecos(index, end);
+
+
+            index = -1;
+        }else {
+            // inclui novo registro
+            //    tabelaClientes.getItems().add(cli);
+
+            if(!end.getCepCliente().matches("[0-9]*")) {
+
+                Alert alerta = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Erro");
+                alert.setHeaderText("Documento invalido");
+                alert.show();
+
+            }else if(ServiceEnderecos.buscarEnderecoByCep(end.getCepCliente())) {
+                Alert alerta = new Alert(Alert.AlertType.ERROR);
+                alerta.setTitle("Alerta!");
+                alerta.setHeaderText("Documento: " + cepEndCliente.getText() + " já existe na base!");
+                alerta.show();
+
+            }else {
+                ServiceEnderecos.inserirEnderecos(end);
+
+            }
+        }
+
+
+        this.carregarTabelaEnderecos();
+
+        this.limparCampos();
+
+    }
+
+    
+
+    public void excluirCli(){
+        if(index > -1){
+            //tabelaClientes.getItems().remove(index);
+            ServiceCliente.deletarCliente(index);
+            this.carregarTabelaClientes();
+
+            index = -1;
+            this.limparCampos();
+        }
+    }
+
+    public void excluirEnd(){
+        if(index > -1){
+            //tabelaClientes.getItems().remove(index);
+            ServiceEnderecos.deletarEnderecos(index);
+            this.carregarTabelaEnderecos();
+            index = -1;
+            this.limparCampos();
+        }
+    }
+
 
     public void limparCampos(){
         nomeCliente.setText("");

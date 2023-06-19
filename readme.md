@@ -5,17 +5,10 @@ Aplicação em javafx para cadastro de cliente
 * Java fx
 * PostgreSql
 
-| Coluna 1 | Coluna 2 |
-|----------| ---------|
-| Valor | Valor 2 | 
+## Instalação e Execução
 
-```java
-   public synchronized Connection getConexao() throws SQLException {
-        if(conn == null){
-            conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/AulaJavaDB", "postgres", "postgres");
-            //conn = DriverManager.getConnection("jdbc:mysql://localhost/ecommerce", "root", "");
-        }
+Para instalação do banco de dados, instalar Postgres 15.3, depois instalar adminstrdor de banco de dados DBeaver.
+Criar base de dados chamada "avaliaçãoJava", abrir e executar os scripts SQL para construção do banco de dados. 
 
-        return conn;
-    }
-```
+Para executar programa, abrir package e executar utilizando IntelliJ IDEA ou IDE de sua preferência.
+
